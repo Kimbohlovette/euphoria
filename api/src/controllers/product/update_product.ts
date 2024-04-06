@@ -12,9 +12,7 @@ export const updateProduct = async (req: Request, res: Response) => {
 		if (count < 1) {
 			return res.status(404).json({ message: 'Product not found' });
 		}
-		return res
-			.status(200)
-			.json({ message: 'Product updated successfully' });
+		return res.status(200).json({ updatedId: id });
 	} catch (err) {
 		return res.status(500).json({
 			message: 'Error updating product',
