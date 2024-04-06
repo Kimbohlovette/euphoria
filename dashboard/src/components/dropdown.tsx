@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { CSSProperties, useRef, useState } from 'react';
 import { LuChevronDown, LuChevronUp } from 'react-icons/lu';
 import ClickAwayListener from './click_away_listener';
 
@@ -12,12 +12,14 @@ interface DropdownProps<T> {
 	onSelect: (selectValue: T) => void;
 	placeholder?: string;
 	selectedValue?: T;
+	containerStyle?: CSSProperties;
 }
 
 const Dropdown = <T extends OptionType>({
 	data,
 	onSelect,
 	selectedValue,
+	containerStyle,
 }: DropdownProps<T>) => {
 	const DEFAULT_OPTION = selectedValue ?? { id: 1, title: 'Select Option' };
 
@@ -41,10 +43,11 @@ const Dropdown = <T extends OptionType>({
 				className="relative focus:outline-none w-full"
 			>
 				<div
+					style={containerStyle}
 					onClick={() => {
 						setShowContent(!showContent);
 					}}
-					className="control py-3 px-4 border rounded-md flex items-center justify-between gap-4"
+					className="control py-2 px-4 rounded-lg flex items-center justify-between gap-4"
 				>
 					<span className="text-gray-700">
 						{selectedOption.title}
