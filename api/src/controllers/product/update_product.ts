@@ -2,11 +2,11 @@ import { Request, Response } from 'express';
 import { Product } from '../../models/models';
 export const updateProduct = async (req: Request, res: Response) => {
 	const { id } = req.params;
-	const { title, images, description, price, tags, stock, category } =
+	const { title, images, description, price, tags, stock, CategoryId } =
 		req.body;
 	try {
 		const [count] = await Product.update(
-			{ title, images, description, price, tags, stock, category },
+			{ title, images, description, price, tags, stock, CategoryId },
 			{ where: { id } }
 		);
 		if (count < 1) {

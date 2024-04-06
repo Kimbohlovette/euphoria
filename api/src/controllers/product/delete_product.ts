@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { Product } from '../../models/models';
 
-const deleteProduct = async (req: Request, res: Response) => {
+export const deleteProduct = async (req: Request, res: Response) => {
 	const { id } = req.params;
 	try {
 		const product = await Product.findByPk(id);
@@ -18,5 +18,3 @@ const deleteProduct = async (req: Request, res: Response) => {
 		});
 	}
 };
-
-export default deleteProduct;
