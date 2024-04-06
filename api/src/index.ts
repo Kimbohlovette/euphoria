@@ -5,6 +5,7 @@ import sequelize from './models/models';
 import userRoutes from './routes/user_routes';
 import categoryRoutes from './routes/category_routes';
 import productRoutes from './routes/product_routes';
+import shoppingCartRoutes from './routes/shoppingcart_routes';
 dotenv.config();
 const LISTENPORT = process.env.LISTENPORT ?? '8000';
 // Initialize express server
@@ -38,6 +39,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/ping', (req, res) => {
 	res.send('pong!');
 });
+
 app.use('/api/users', userRoutes);
 app.use('/api/categories', categoryRoutes);
 app.use('/api/products', productRoutes);
+app.use('/api/shoppingcart', shoppingCartRoutes);
