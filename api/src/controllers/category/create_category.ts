@@ -1,13 +1,8 @@
 import { Request, Response } from 'express';
-import { Optional } from 'sequelize';
 import { Category } from '../../models/models';
-import { CategoryType } from '../../types';
 
 export const createCategory = async (req: Request, res: Response) => {
-	const { title, image, description } = req.body as unknown as Optional<
-		CategoryType,
-		'id'
-	>;
+	const { title, image, description } = req.body;
 	try {
 		const createdCategory = await Category.create({
 			title,
