@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { Category, Product } from '../../models/models';
+import { Product } from '../../models/models';
 
 export const getProductById = async (req: Request, res: Response) => {
 	try {

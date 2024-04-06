@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { Product } from '../../models/models';
 
 export const createProduct = async (req: Request, res: Response) => {
-	const { title, images, description, price, tags, stock, CategoryId } =
+	const { title, images, description, price, tags, stock, categoryId } =
 		req.body;
 	try {
 		const createdProduct = await Product.create({
@@ -12,7 +12,7 @@ export const createProduct = async (req: Request, res: Response) => {
 			price,
 			tags,
 			stock,
-			CategoryId,
+			CategoryId: categoryId,
 		});
 		return res.status(201).json(createdProduct);
 	} catch (err) {
