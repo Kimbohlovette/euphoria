@@ -1,24 +1,16 @@
 import cors from 'cors';
 import express from 'express';
-import { Sequelize } from 'sequelize';
 import dotenv from 'dotenv';
+import sequelize from './models/models';
+import userRoutes from './routes/user_routes';
+import categoryRoutes from './routes/category_routes';
 dotenv.config();
-
-// Collect database credentials
-const DBUSER = process.env.DBUSER;
-const DBPASSWORD = process.env.DBPASSWORD ?? 'euphoria';
-const DBNAME = process.env.DBNAME ?? 'euphoria';
-const DBHOST = process.env.DBHOST ?? 'localhost';
 const LISTENPORT = process.env.LISTENPORT ?? '8000';
-
-// database connection path
-const DB_PATH = `postgres://${DBUSER}:${DBPASSWORD}@${DBHOST}/${DBNAME}`;
-
 // Initialize express server
 const app = express();
 
 // Establish connection to database server
-const sequelize = new Sequelize(DB_PATH);
+
 sequelize
 	.authenticate()
 	.then(() => {
@@ -32,10 +24,10 @@ sequelize
 		);
 	})
 	.catch((error) => {
-		console.error('Unable to connect to the database:', DB_PATH);
+		console.error('Unable to connect to the database');
 		console.error(error);
 	});
-
+sequelize.sync();
 // middlewares
 app.use(cors());
 app.use(express.json());
@@ -45,3 +37,5 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/ping', (req, res) => {
 	res.send('pong!');
 });
+app.use('/api/users', userRoutes);
+app.use('/api/categories', categoryRoutes);
