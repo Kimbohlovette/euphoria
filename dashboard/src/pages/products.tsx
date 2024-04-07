@@ -1,17 +1,21 @@
-import { CiMonitor } from 'react-icons/ci';
-import { IoArrowDownSharp, IoArrowUpSharp } from 'react-icons/io5';
-import { LuUserCheck, LuUsers2 } from 'react-icons/lu';
-import Dropdown from '../components/dropdown';
-import SearchInput from '../components/search_input_control';
-import { GoChevronLeft, GoChevronRight } from 'react-icons/go';
-import CreateProductModal from '../components/modals/create_product_modal';
 import { useState } from 'react';
+import { CiMonitor } from 'react-icons/ci';
+import { GoChevronLeft, GoChevronRight } from 'react-icons/go';
+import { IoArrowDownSharp, IoArrowUpSharp } from 'react-icons/io5';
+import { LuPlus, LuUserCheck, LuUsers2 } from 'react-icons/lu';
+import Dropdown from '../components/dropdown';
+import CreateProductModal from '../components/modals/create_product_modal';
+import SearchInput from '../components/search_input_control';
 
 const Products = () => {
-	const [showCreateProductModal, setShowCreateProductModal] = useState(true);
+	const [showCreateProductModal, setShowCreateProductModal] = useState(false);
 	return (
 		<>
-			{showCreateProductModal && <CreateProductModal />}
+			{showCreateProductModal && (
+				<CreateProductModal
+					onClose={() => setShowCreateProductModal(false)}
+				/>
+			)}
 			<div className="flex flex-col gap-8">
 				<section className="p-6 bg-white rounded-3xl grid grid-cols-[repeat(auto-fit,_minmax(200px,_1fr))] lg:divide-x *:px-4 gap-8">
 					<div>
@@ -39,7 +43,7 @@ const Products = () => {
 					</div>
 				</section>
 				<section className="p-6 bg-white rounded-3xl">
-					<header className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+					<header className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4">
 						<div>
 							<h1 className="text-gray-800 font-semibold text-2xl">
 								Products
@@ -63,6 +67,17 @@ const Products = () => {
 								placeholder="Sort by:"
 								containerStyle={{ backgroundColor: '#f9fafb' }}
 							/>
+							<div>
+								<button
+									onClick={(e) => {
+										e.stopPropagation();
+										setShowCreateProductModal(true);
+									}}
+									className="text-white bg-green-600 py-1.5 px-2 rounded-lg flex items-center justify-center font-medium"
+								>
+									<LuPlus strokeWidth={3} /> New
+								</button>
+							</div>
 						</div>
 					</header>
 					<div className="py-5">
