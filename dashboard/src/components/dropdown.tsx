@@ -44,7 +44,8 @@ const Dropdown = <T extends OptionType>({
 			>
 				<div
 					style={containerStyle}
-					onClick={() => {
+					onClick={(e) => {
+						e.stopPropagation();
 						setShowContent(!showContent);
 					}}
 					className="control py-2 px-4 rounded-lg flex items-center justify-between gap-4"
