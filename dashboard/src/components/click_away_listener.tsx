@@ -31,7 +31,11 @@ const ClickAwayListener = ({
 		return () => document.removeEventListener('click', handleClickOutside);
 	}, [onClickAway, toggleButtonRef]);
 
-	return <div ref={ref}>{children}</div>;
+	return (
+		<div style={{ minWidth: 'fit-content' }} ref={ref}>
+			{children}
+		</div>
+	);
 };
 
 export default ClickAwayListener;
