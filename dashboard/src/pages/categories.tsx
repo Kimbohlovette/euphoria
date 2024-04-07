@@ -3,7 +3,7 @@ import { IoArrowDownSharp, IoArrowUpSharp } from 'react-icons/io5';
 import { LuUserCheck, LuUsers2 } from 'react-icons/lu';
 import Dropdown from '../components/dropdown';
 import SearchInput from '../components/search_input_control';
-import { GoChevronRight } from 'react-icons/go';
+import { GoChevronLeft, GoChevronRight } from 'react-icons/go';
 
 const Categories = () => {
 	return (
@@ -65,9 +65,13 @@ const Categories = () => {
 						<thead>
 							<tr className="*:px-4 *:py-3 text-left text-sm text-gray-500 *:font-light">
 								<th>Name</th>
-								<th>Desription</th>
-								<th></th>
-								<th>Status</th>
+								<th className="hidden md:table-cell">
+									Desription
+								</th>
+								<th className="hidden sm:table-cell"></th>
+								<th className="flex justify-end sm:justify-start">
+									Status
+								</th>
 							</tr>
 						</thead>
 						<tbody className="divide-y">
@@ -89,6 +93,30 @@ const Categories = () => {
 						</tbody>
 					</table>
 				</div>
+				<footer>
+					<div className="flex flex-wrap-reverse gap-5 lg:justify-between">
+						<p className="text-sm text-gray-500">
+							Showing data {1} to {8} of {256}k entries
+						</p>
+						<div className="flex items-center gap-2 [&_button]:px-3 [&_button]:py-1.5 [&_button]:bg-gray-100 [&_button]:rounded-md text-xs">
+							<button>
+								<GoChevronLeft />
+							</button>
+							<div className="hidden sm:flex gap-1">
+								<button>1</button>
+								<button>2</button>
+								<button>3</button>
+								<button>4</button>
+
+								<div className="self-end px-4">...</div>
+								<button>40</button>
+							</div>
+							<button>
+								<GoChevronRight />
+							</button>
+						</div>
+					</div>
+				</footer>
 			</section>
 		</div>
 	);
@@ -159,15 +187,15 @@ const CategoryRow = ({
 	return (
 		<tr className="*:py-3 *:px-4 *:text-sm *:text-gray-600">
 			<td>{name}</td>
-			<td className="line-clamp-2">{description}</td>
-			<td>
+			<td className="hidden md:table-cell line-clamp-2">{description}</td>
+			<td className="hidden sm:table-cell">
 				<img
 					className="max-h-12 rounded-xl aspect-video object-cover object-center"
 					src={imageUrl}
 					alt={name}
 				/>
 			</td>
-			<td>
+			<td className="flex justify-end sm:justify-start">
 				<p
 					className={`rounded-md text-xs border px-4 py-1 max-w-fit capitalize min-w-20 text-center ${
 						status === 'active'
