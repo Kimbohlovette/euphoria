@@ -8,7 +8,7 @@ const MyApp = () => {
 			<div>
 				<SideBar />
 			</div>
-			<div className="bg-slate-50 px-4 sm:px-8 lg:px-12 py-8 sm:py-12">
+			<div className="bg-slate-100 px-4 sm:px-8 lg:px-12 py-8 sm:py-12">
 				<Header />
 				<Outlet />
 			</div>
