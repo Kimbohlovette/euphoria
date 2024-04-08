@@ -5,9 +5,11 @@ import { MdOutlinePersonOutline } from 'react-icons/md';
 import { PiCoinsThin, PiKeyThin } from 'react-icons/pi';
 import { TbMessageCircleQuestion, TbSettings2 } from 'react-icons/tb';
 import { NavLink, useLocation } from 'react-router-dom';
+import UpgradeToPro from '../upgrade_to_pro';
+import ProfileDropdownButton from '../profile_dropdown_button';
 const SideBar = () => {
 	return (
-		<div className="bg-white py-5 sm:py-8 pr-5">
+		<div className="relative bg-white py-5 sm:py-8 px-5 h-screen">
 			<header className="flex items-center gap-4 text-3xl text-gray-900 py-5">
 				<TbSettings2 />
 				<div className="flex items-end gap-0.5">
@@ -53,6 +55,10 @@ const SideBar = () => {
 					/>
 				</ul>
 			</nav>
+			<div className="absolute bottom-10 left-0 flex flex-col gap-5 px-5">
+				<UpgradeToPro />
+				<ProfileDropdownButton />
+			</div>
 		</div>
 	);
 };
