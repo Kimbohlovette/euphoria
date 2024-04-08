@@ -1,6 +1,7 @@
 import { CiHeart } from 'react-icons/ci';
 import { FiShoppingCart, FiUser } from 'react-icons/fi';
 import { NavLink } from 'react-router-dom';
+import SearchInput from '../search_input_control';
 
 const Navbar = () => {
 	return (
@@ -26,7 +27,16 @@ const Navbar = () => {
 						</NavLink>
 					</ul>
 				</nav>
-				<div>Search</div>
+				<div>
+					<SearchInput
+						onChange={() => {}}
+						placeholder="Search"
+						onReset={() => {}}
+						onSubmit={() => {}}
+						value=""
+						containerStyle={{ backgroundColor: '#f9fafb' }}
+					/>
+				</div>
 			</div>
 			<div className="flex items-center gap-4 *:p-1.5 *:bg-gray-100 *:rounded-md text-gray-400">
 				<button>
