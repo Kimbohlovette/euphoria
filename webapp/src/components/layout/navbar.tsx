@@ -5,10 +5,10 @@ import SearchInput from '../search_input_control';
 
 const Navbar = () => {
 	return (
-		<header className="flex items-center justify-between py-5 px-8">
+		<header className="flex items-center justify-between py-5 px-2">
 			<h1 className="text-2xl text-gray-700 cursor-pointer">Euphoria</h1>
-			<div className="flex items-center gap-4">
-				<nav>
+			<div className="hidden items-center gap-4">
+				<nav className="hidden sm:block">
 					<ul className="flex items-center justify-center text-gray-500 gap-5 text-lg">
 						<NavLink to="/">
 							<li>Shop</li>
