@@ -22,31 +22,25 @@ const Shop = () => {
 		tags: ['cool', 'colorful', 'comfy'],
 		imageUrl: require('../assets/hero-image-one-transparent.png'),
 	});
-	useEffect(() => {
-		setDisplayData({
-			category: 'TShirts/Tops',
-			collection: 'Summer Value Pack',
-			tags: ['cool', 'colorful', 'comfy'],
-			imageUrl: require('../assets/hero-image-one-transparent.png'),
-		});
-	}, []);
 	return (
 		<div>
 			<section>
 				<div className="relative flex items-center *:flex-1 text-white bg-[#00b5dd] mix-blend-lighten aspect-square sm:aspect-video px-16">
-					<div className="">
-						<h1 className="text-2xl sm:text-3xl lg:text-4xl font-[100]">
-							{currentDisplayData.category}
-						</h1>
-						<h1 className="text-5xl sm:text-6xl lg:text-7xl my-3 sm:my-5 font-[100]">
-							{currentDisplayData.collection}
-						</h1>
-						<div className="text-xl sm:text-2xl lg:text-3xl font-[100]">
-							{currentDisplayData.tags.join(' / ')}
+					<div className="grid place-items-end">
+						<div className="font-[100] w-4/5">
+							<h1 className="text-2xl sm:text-3xl lg:text-4xl font-[100]">
+								{currentDisplayData.category}
+							</h1>
+							<h1 className="text-4xl sm:text-5xl lg:text-7xl my-5 md:my-8">
+								{currentDisplayData.collection}
+							</h1>
+							<div className="text-xl sm:text-2xl lg:text-3xl">
+								{currentDisplayData.tags.join(' / ')}
+							</div>
+							<button className="py-3 px-10 rounded-lg text-gray-800 font-semibold bg-white mt-8">
+								Shop Now
+							</button>
 						</div>
-						<button className="py-3 px-10 rounded-lg text-gray-800 font-semibold bg-white mt-8">
-							Shop Now
-						</button>
 					</div>
 					<div className="hidden sm:block h-full">
 						<img
@@ -78,7 +72,11 @@ const Shop = () => {
 									setDisplayData(displayData[0]);
 								}
 							}}
-							className="h-2 w-12 bg-white/60 rounded-l-full"
+							className={`h-2 w-12 ${
+								currentDisplayData === displayData[0]
+									? 'bg-white'
+									: 'bg-white/60'
+							} rounded-l-full`}
 						></button>
 						<button
 							onClick={() => {
@@ -86,7 +84,11 @@ const Shop = () => {
 									setDisplayData(displayData[1]);
 								}
 							}}
-							className="h-2 w-12 bg-white rounded-r-full"
+							className={`h-2 w-12 ${
+								currentDisplayData === displayData[1]
+									? 'bg-white/60'
+									: 'bg-white'
+							} rounded-r-full`}
 						></button>
 					</div>
 				</div>
