@@ -14,7 +14,7 @@ const CategoryCard = ({ imageUrl, actionText, title }: Props) => {
 				alt=""
 			/>
 			<div className="mt-2">
-				<h3 className="font-medium text-gray-800">{title}</h3>
+				<h3 className="font-medium text-gray-800 text-lg">{title}</h3>
 				{actionText && (
 					<NavLink
 						to={`/products?cat=${title}`}

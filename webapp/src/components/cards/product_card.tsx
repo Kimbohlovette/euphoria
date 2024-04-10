@@ -1,3 +1,6 @@
+import { useEffect, useState } from "react";
+import { BsHeart, BsHeartFill } from "react-icons/bs";
+
 interface Props {
 	imageUrl: string;
 	title: string;
@@ -16,9 +19,23 @@ const ProductCard = ({
 	brand,
 	price,
 }: Props) => {
+	const [like, setLike] = useState(liked);
+	useEffect(() => {
+		if (liked) {
+			onLiked();
+		} else {
+			onDisliked();
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [like]);
 	return (
-		<div className="overflow-hidden">
-			<div></div>
+		<div className="overflow-hidden relative">
+			<button
+				onClick={() => setLike((s) => !s)}
+				className="grid place-items-center p-3 rounded-full bg-white absolute top-5 right-5 text-gray-600"
+			>
+				{like ? <BsHeart /> : <BsHeartFill />}
+			</button>
 			<img
 				className="w-full sm:aspect-square h-96 object-cover rounded-lg"
 				src={imageUrl}
