@@ -4,6 +4,7 @@ import Heading from "../components/heading";
 import CategoryCardWithContent from "../components/cards/category_card_with_content";
 import CategoryCard from "../components/cards/category_card";
 import ProductCard from "../components/cards/product_card";
+import Partners from "../components/partners";
 
 const Shop = () => {
 	const displayData = [
@@ -265,6 +266,9 @@ const Shop = () => {
 						/>
 					</div>
 				</section>
+
+				<Partners />
+
 				<section>
 					<Heading text="In the Limelight" />
 					<div className="grid grid-cols-[repeat(auto-fit,_minmax(250px,_1fr))] gap-4">
