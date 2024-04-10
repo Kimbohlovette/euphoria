@@ -9,7 +9,7 @@ const CategoryCard = ({ imageUrl, actionText, title }: Props) => {
 	return (
 		<div className="overflow-hidden">
 			<img
-				className="w-full sm:aspect-square h-72 object-cover rounded-lg"
+				className="w-full sm:aspect-square h-96 object-cover rounded-lg"
 				src={imageUrl}
 				alt=""
 			/>
