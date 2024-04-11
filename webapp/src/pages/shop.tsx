@@ -104,7 +104,7 @@ const Shop = () => {
 						<CategoryCardWithContent
 							actionText="Shop Now"
 							backgroundImage="https://s3-alpha-sig.figma.com/img/cc0b/4fba/76b046b1f4fe7dfb452989b94ab6881a?Expires=1713744000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=IBuKeRuYvcSln6gZynJ58XhVFO5qhcMo-WnAnM9aHX-6wWOutnEoeSzfkYvj0QA3BaKmu8JsDcZevfH-R~RS3D8hA1wEwbT6TMbmcVV3K1-bc7uV9i5G1~mv9ZHvTVE7zgBmeE0THY98v~QFeICjGbhME6s05DlqFUkAT7jmw11etV9W4ng~FoVl3tvbTGbPPOB7I-WlbZYdqv2MC~dU0xj4jdFX1Le2WWmW0uyA8D-HyoR~7~hKzNrBRpyfDxaWR88yMNn-jByLEgTXlp2Fhz2oSZYC5Ak-crCzZrm~hf3dO-GycllyGOuHvGoCASXyCJiIfaXGhC~KHqJwwAmLoQ__"
-							actionType="button"
+							actionType="link"
 							description="High Coziness"
 							discountText="up to 50% off"
 							textPosition="right"
@@ -204,6 +204,38 @@ const Shop = () => {
 							discountText="up to 50% off"
 							textPosition="left"
 							title="Low Price"
+						/>
+					</div>
+				</section>
+				<section>
+					<div className="flex flex-col sm:flex-row overflow-hidden rounded-xl">
+						<div className="relative bg-cover bg-center w-full aspect-square sm:w-1/2 sm:aspect-auto  min-h-full bg-black/50 text-white flex flex-col justify-center p-8 sm:p-10 md:p-16">
+							<img
+								src="https://s3-alpha-sig.figma.com/img/f927/963a/ccbf8d7814593bd6ca7041fc940b1951?Expires=1713744000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=b7qGO15t7XZrWhkoi36ahoIQC0G12OucRBg2KfX6KaoYM1QGxqwMzepOItoCJ7sB~-c0bzsBEzBd0waYRQopXLa6zTBaxs6Mb0vT2t4GuCZXLWuc9U8Yhn4Np402V3JSNnIS5yzMjmlxal3T6lMUZ42FML6QgwJfawh3HSxzBmPnPJPTe0YFgz1Ui3HDNCmscvojhPp3rnrD8l0SN~W5ScjwJ8dxi5bFt1bGw7a3lOnufyTptHpTpmAD3HKHzavnuz2AdR1k6DhYo~2TDInjgFFKntNi0FSRW6sOtjR7gkRr6rm8gP51KVFAUzIk1p-A6EtMVGxVl3EOpD0mpDOHLQ__"
+								alt=""
+								className="absolute top-0 w-full left-0 h-full [zoom:_60%] -z-10 object-cover object-center"
+							/>
+							<div>
+								<h2 className="uppercase text-3xl font-[100] tracking-widest">
+									we made your everyday fashion better
+								</h2>
+								<p className="text-xl font-extralight py-2">
+									In our jouney to improve everyday fashion,
+									euphoria presents EVERYDAY wear range -
+									Comfortable & Affordable fashion 24/7
+								</p>
+								<div className="py-5">
+									<button className="bg-transparent border border-white py-1.5 px-5 rounded-md bg-white text-gray-800 hover:bg-gray-100 max-w-fit">
+										Shop Now
+									</button>
+								</div>
+							</div>
+						</div>
+
+						<img
+							src="https://s3-alpha-sig.figma.com/img/9f91/4df4/eea76dc5260efee6392481867d9947a2?Expires=1713744000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=eZRQ0jWIZsbAWooEizfzzaFqpkvyMhRH0-WBLUj24Q2ZiKYWlxSlPJ8f--oM0QKeIK5zro~Ff0~afmkpVSzledOn8FNGT5dY34NY5WIceCgC26qOBl4XSs5tAApwSVzFSEvYt5QZgQW2Qblg6TXE-dl1n-AnCc37sgHIYD63sKz3e84zWRWHi7zB3Fb9egZLHfIE~JlAzDNcslp96qvmMMpbMW6IyerluDhmCR6GpSo7TUVKPcjnJgEC7z06grz-CDNzdX2xwSW8MgH2ZlKaDt4oMH9UKsWZ3iU0X50AIjCcvHCNJvzxDHCZqICod8BvWNOXu2aFRlA46sWmriQowQ__"
+							alt=""
+							className="object-cover object-top w-full aspect-square sm:w-1/2 sm:h-auto"
 						/>
 					</div>
 				</section>

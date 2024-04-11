@@ -34,7 +34,7 @@ const ProductCard = ({
 				onClick={() => setLike((s) => !s)}
 				className="grid place-items-center p-3 rounded-full bg-white absolute top-5 right-5 text-gray-600"
 			>
-				{like ? <BsHeart /> : <BsHeartFill />}
+				{like ? <BsHeartFill /> : <BsHeart />}
 			</button>
 			<img
 				className="w-full sm:aspect-square h-96 object-cover rounded-lg"
