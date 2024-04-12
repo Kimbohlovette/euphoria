@@ -5,6 +5,7 @@ import CategoryCardWithContent from "../components/cards/category_card_with_cont
 import CategoryCard from "../components/cards/category_card";
 import ProductCard from "../components/cards/product_card";
 import Partners from "../components/partners";
+import TestimonialCard from "../components/cards/testimonial_card";
 
 const Shop = () => {
 	const displayData = [
@@ -340,6 +341,11 @@ const Shop = () => {
 				</section>
 				<section>
 					<Heading text="Feedback" />
+					<div className="grid grid-cols-[repeat(auto-fit,_minmax(250px,_1fr))] gap-4">
+						<TestimonialCard />
+						<TestimonialCard />
+						<TestimonialCard />
+					</div>
 				</section>
 			</section>
 		</div>
