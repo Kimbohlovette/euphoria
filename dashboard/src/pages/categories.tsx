@@ -2,9 +2,8 @@ import { CiMonitor } from 'react-icons/ci';
 import { IoArrowDownSharp, IoArrowUpSharp } from 'react-icons/io5';
 import { LuPlus, LuUserCheck, LuUsers2 } from "react-icons/lu";
 import Dropdown from '../components/dropdown';
-import SearchInput from '../components/search_input_control';
-import { GoChevronLeft, GoChevronRight } from 'react-icons/go';
-import { useEffect, useState } from "react";
+import SearchInput from "../components/search_input_control";
+import { useState } from "react";
 import CreateCategoryModal from "../components/modals/create_category_modal";
 import { useFetchCategories } from "../hooks/hooks";
 import Pagination from "../components/pagination";
@@ -16,9 +15,6 @@ const Categories = () => {
 	const [page, setPage] = useState(1);
 	const { data } = useFetchCategories({ page, size: PAGE_SIZE });
 	const catData = data?.data;
-	useEffect(() => {
-		console.log("changed: ", page);
-	}, [page]);
 
 	return (
 		<>

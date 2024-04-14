@@ -1,11 +1,21 @@
 import axios from "axios";
 import { Product, Category, QueryObject } from "../types";
 export const BASE_URL = "http://localhost:8083";
+
+type CategoriesData = {
+	categories: Category[];
+	total: number;
+};
+type ProductsData = {
+	products: Product[];
+	total: number;
+};
+
 export const fetchProducts = async (queryObj?: QueryObject) => {
 	if (!queryObj) {
-		return await axios.get<Product[]>(`${BASE_URL}/api/products`);
+		return await axios.get<ProductsData>(`${BASE_URL}/api/products`);
 	}
-	return await axios.get<Product[]>(`${BASE_URL}/api/products`, {
+	return await axios.get<ProductsData>(`${BASE_URL}/api/products`, {
 		params: {
 			offset: (queryObj.page - 1) * queryObj.size,
 			limit: queryObj.size,
@@ -14,10 +24,6 @@ export const fetchProducts = async (queryObj?: QueryObject) => {
 };
 
 export const fetchCategories = async (queryObj?: QueryObject) => {
-	type CategoriesData = {
-		categories: Category[];
-		total: number;
-	};
 	if (!queryObj) {
 		return await axios.get<CategoriesData>(`${BASE_URL}/api/categories`);
 	}

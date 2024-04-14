@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { GoChevronLeft, GoChevronRight } from "react-icons/go";
 
 interface Props {
@@ -13,9 +13,14 @@ const Pagination = ({
 	pageSize,
 	currentPage,
 	currentNumberOfItems,
+	onPageChange,
 }: Props) => {
 	const totalNumOfPages = Math.ceil(total / pageSize);
 	const [page, setPage] = useState(currentPage);
+	useEffect(() => {
+		onPageChange(page);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [page]);
 	return (
 		<div>
 			<div className="flex flex-wrap-reverse gap-5 lg:justify-between">

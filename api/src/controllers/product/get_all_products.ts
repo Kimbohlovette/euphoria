@@ -11,7 +11,10 @@ export const getAllProducts = async (req: Request, res: Response) => {
 			});
 			return res.status(200).json(products);
 		}
-		const products = await Product.findAll();
+		const products = await Product.findAll({
+			offset: Number(req.query.offset),
+			limit: Number(req.query.limit),
+		});
 		const categories = await Category.findAll();
 		const formatted = products.map((product) => {
 			return {
@@ -21,7 +24,10 @@ export const getAllProducts = async (req: Request, res: Response) => {
 				),
 			};
 		});
-		return res.status(200).json(formatted);
+		return res.status(200).json({
+			products: formatted,
+			total: (await Product.findAll()).length,
+		});
 	} catch (err) {
 		return res.status(500).json({
 			message: "Error getting products",

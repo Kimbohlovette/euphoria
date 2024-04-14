@@ -1,17 +1,22 @@
 import { useState } from 'react';
-import { CiMonitor } from 'react-icons/ci';
-import { GoChevronLeft, GoChevronRight } from 'react-icons/go';
-import { IoArrowDownSharp, IoArrowUpSharp } from 'react-icons/io5';
-import { LuPlus, LuUserCheck, LuUsers2 } from 'react-icons/lu';
-import Dropdown from '../components/dropdown';
-import CreateProductModal from '../components/modals/create_product_modal';
-import SearchInput from '../components/search_input_control';
+import { CiMonitor } from "react-icons/ci";
+import { IoArrowDownSharp, IoArrowUpSharp } from "react-icons/io5";
+import { LuPlus, LuUserCheck, LuUsers2 } from "react-icons/lu";
+import Dropdown from "../components/dropdown";
+import CreateProductModal from "../components/modals/create_product_modal";
+import SearchInput from "../components/search_input_control";
 import { useFetchProducts } from "../hooks/hooks";
 import { Category } from "../types";
+import Pagination from "../components/pagination";
 
 const Products = () => {
 	const [showCreateProductModal, setShowCreateProductModal] = useState(false);
-	const { data, isLoading } = useFetchProducts();
+
+	const [page, setPage] = useState(1);
+	const PAGE_SIZE = 5;
+	const { data, isLoading } = useFetchProducts({ page, size: PAGE_SIZE });
+	const productData = data?.data;
+
 	return (
 		<>
 			{showCreateProductModal && (
@@ -24,7 +29,7 @@ const Products = () => {
 					<div>
 						<SummaryCard
 							title="Products"
-							count={3484}
+							count={productData?.total ?? 0}
 							percentageIncrease={26}
 							icon={<LuUsers2 size={30} />}
 						/>
@@ -62,13 +67,17 @@ const Products = () => {
 								value=""
 								placeholder="Search"
 								onChange={() => {}}
-								containerStyle={{ backgroundColor: "#f9fafb" }}
+								containerStyle={{
+									backgroundColor: "#f9fafb",
+								}}
 							/>
 							<Dropdown
 								data={[]}
 								onSelect={() => {}}
 								placeholder="Sort by:"
-								containerStyle={{ backgroundColor: "#f9fafb" }}
+								containerStyle={{
+									backgroundColor: "#f9fafb",
+								}}
 							/>
 							<div>
 								<button
@@ -89,69 +98,62 @@ const Products = () => {
 								<IoArrowDownSharp size={100} />
 							</div>
 						) : (
-							<table className="w-full">
-								<thead>
-									<tr className="*:px-4 *:py-3 text-left text-sm text-gray-500 *:font-light">
-										<th>Product Name</th>
-										<th className="hidden md:table-cell">
-											Desription
-										</th>
-										<th>Category</th>
-										<th className="hidden sm:table-cell">
-											Image
-										</th>
-										<th>Country</th>
-										<th className="flex justify-end sm:justify-start">
-											Status
-										</th>
-									</tr>
-								</thead>
-								<tbody className="divide-y">
-									{data?.data.map((prd, key) => (
-										<CategoryRow
-											country={"Cameroon"}
-											category={
-												(prd.category as Category).title
-											}
-											description={prd.description}
-											imageUrl={prd.images[0]}
-											name={prd.title}
-											status={
-												Math.random() < 0.5
-													? "inactive"
-													: "active"
-											}
-											key={key}
-										/>
-									))}
-								</tbody>
-							</table>
+							productData && (
+								<table className="w-full">
+									<thead>
+										<tr className="*:px-4 *:py-3 text-left text-sm text-gray-500 *:font-light">
+											<th>Product Name</th>
+											<th className="hidden md:table-cell">
+												Desription
+											</th>
+											<th>Category</th>
+											<th className="hidden sm:table-cell">
+												Image
+											</th>
+											<th>Country</th>
+											<th className="flex justify-end sm:justify-start">
+												Status
+											</th>
+										</tr>
+									</thead>
+									<tbody className="divide-y">
+										{productData.products.map(
+											(prd, key) => (
+												<CategoryRow
+													country={"Cameroon"}
+													category={
+														(
+															prd.category as Category
+														).title
+													}
+													description={
+														prd.description
+													}
+													imageUrl={prd.images[0]}
+													name={prd.title}
+													status={
+														Math.random() < 0.5
+															? "inactive"
+															: "active"
+													}
+													key={key}
+												/>
+											)
+										)}
+									</tbody>
+								</table>
+							)
 						)}
 					</div>
-					<footer>
-						<div className="flex flex-wrap-reverse gap-5 lg:justify-between">
-							<p className="text-sm text-gray-500">
-								Showing data {1} to {8} of {256}k entries
-							</p>
-							<div className="flex items-center gap-2 [&_button]:px-3 [&_button]:py-1.5 [&_button]:bg-gray-100 [&_button]:rounded-md text-xs">
-								<button>
-									<GoChevronLeft />
-								</button>
-								<div className="hidden sm:flex gap-1">
-									<button>1</button>
-									<button>2</button>
-									<button>3</button>
-									<button>4</button>
-
-									<div className="self-end px-4">...</div>
-									<button>40</button>
-								</div>
-								<button>
-									<GoChevronRight />
-								</button>
-							</div>
-						</div>
-					</footer>
+					{productData?.total && (
+						<Pagination
+							currentNumberOfItems={productData.products.length}
+							currentPage={page}
+							onPageChange={setPage}
+							pageSize={PAGE_SIZE}
+							total={productData.total}
+						/>
+					)}
 				</section>
 			</div>
 		</>
