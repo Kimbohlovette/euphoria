@@ -65,7 +65,8 @@ const Dropdown = <T extends OptionType>({
 						<ul className="text-gray-600 *:py-2 *:px-4 hover:*:bg-gray-200">
 							{data.map((option, key) => (
 								<li
-									onClick={() => {
+									onClick={(e) => {
+										e.stopPropagation();
 										handleSelectOption(option);
 									}}
 									key={key}

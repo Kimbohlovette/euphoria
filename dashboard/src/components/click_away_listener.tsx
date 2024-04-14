@@ -22,6 +22,7 @@ const ClickAwayListener = ({
 			}
 
 			if (ref.current && !ref.current.contains(event.target as Node)) {
+				event.stopPropagation();
 				onClickAway(event);
 			}
 		}

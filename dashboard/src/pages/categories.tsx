@@ -1,15 +1,18 @@
 import { CiMonitor } from 'react-icons/ci';
 import { IoArrowDownSharp, IoArrowUpSharp } from 'react-icons/io5';
-import { LuPlus, LuPlusCircle, LuUserCheck, LuUsers2 } from 'react-icons/lu';
+import { LuPlus, LuUserCheck, LuUsers2 } from "react-icons/lu";
 import Dropdown from '../components/dropdown';
 import SearchInput from '../components/search_input_control';
 import { GoChevronLeft, GoChevronRight } from 'react-icons/go';
 import { useState } from 'react';
 import CreateCategoryModal from '../components/modals/create_category_modal';
+import { useFetchCategories } from "../hooks/hooks";
 
 const Categories = () => {
 	const [showCreateCategoryModal, setShowCreateCategoryModal] =
 		useState(false);
+
+	const { data, isLoading, isError, error } = useFetchCategories();
 
 	return (
 		<>
@@ -65,13 +68,13 @@ const Categories = () => {
 								value=""
 								placeholder="Search"
 								onChange={() => {}}
-								containerStyle={{ backgroundColor: '#f9fafb' }}
+								containerStyle={{ backgroundColor: "#f9fafb" }}
 							/>
 							<Dropdown
 								data={[]}
 								onSelect={() => {}}
 								placeholder="Sort by:"
-								containerStyle={{ backgroundColor: '#f9fafb' }}
+								containerStyle={{ backgroundColor: "#f9fafb" }}
 							/>
 							<div>
 								<button
@@ -101,21 +104,15 @@ const Categories = () => {
 								</tr>
 							</thead>
 							<tbody className="divide-y">
-								{Array(8)
-									.fill(3)
-									.map((row, key) => (
-										<CategoryRow
-											description="Some fake description"
-											imageUrl="https://plus.unsplash.com/premium_photo-1661508557554-e3d96f2fdde5?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-											name="Mens"
-											status={
-												Math.random() < 0.5
-													? 'inactive'
-													: 'active'
-											}
-											key={key}
-										/>
-									))}
+								{data?.data.map((cat, key) => (
+									<CategoryRow
+										key={key}
+										description={cat.description}
+										imageUrl={cat.image}
+										name={cat.title}
+										status={"active"}
+									/>
+								))}
 							</tbody>
 						</table>
 					</div>

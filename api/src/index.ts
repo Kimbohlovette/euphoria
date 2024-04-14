@@ -7,7 +7,7 @@ import categoryRoutes from './routes/category_routes';
 import productRoutes from './routes/product_routes';
 import shoppingCartRoutes from './routes/shoppingcart_routes';
 dotenv.config();
-const LISTENPORT = process.env.LISTENPORT ?? '8000';
+const LISTENPORT = process.env.LISTENPORT ?? "8083";
 // Initialize express server
 const app = express();
 

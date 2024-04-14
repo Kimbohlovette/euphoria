@@ -1,13 +1,16 @@
 import { useState } from "react";
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi2";
-import Heading from "../components/heading";
-import CategoryCardWithContent from "../components/cards/category_card_with_content";
 import CategoryCard from "../components/cards/category_card";
+import CategoryCardWithContent from "../components/cards/category_card_with_content";
 import ProductCard from "../components/cards/product_card";
-import Partners from "../components/partners";
 import TestimonialCard from "../components/cards/testimonial_card";
+import Heading from "../components/heading";
+import Partners from "../components/partners";
+import { useFetchCategories, useFetchProducts } from "../hooks/hooks";
 
 const Shop = () => {
+	const { data } = useFetchCategories();
+	const productsQueryObj = useFetchProducts();
 	const displayData = [
 		{
 			category: "TShirts/Tops",
@@ -104,7 +107,7 @@ const Shop = () => {
 					<div className="flex flex-col sm:flex-row items-center justify-end gap-4">
 						<CategoryCardWithContent
 							actionText="Shop Now"
-							backgroundImage="https://s3-alpha-sig.figma.com/img/cc0b/4fba/76b046b1f4fe7dfb452989b94ab6881a?Expires=1713744000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=IBuKeRuYvcSln6gZynJ58XhVFO5qhcMo-WnAnM9aHX-6wWOutnEoeSzfkYvj0QA3BaKmu8JsDcZevfH-R~RS3D8hA1wEwbT6TMbmcVV3K1-bc7uV9i5G1~mv9ZHvTVE7zgBmeE0THY98v~QFeICjGbhME6s05DlqFUkAT7jmw11etV9W4ng~FoVl3tvbTGbPPOB7I-WlbZYdqv2MC~dU0xj4jdFX1Le2WWmW0uyA8D-HyoR~7~hKzNrBRpyfDxaWR88yMNn-jByLEgTXlp2Fhz2oSZYC5Ak-crCzZrm~hf3dO-GycllyGOuHvGoCASXyCJiIfaXGhC~KHqJwwAmLoQ__"
+							backgroundImage="https://tinyurl.com/3ru3b8tv"
 							actionType="link"
 							description="High Coziness"
 							discountText="up to 50% off"
@@ -113,7 +116,7 @@ const Shop = () => {
 						/>
 						<CategoryCardWithContent
 							actionText="Shop Now"
-							backgroundImage="https://s3-alpha-sig.figma.com/img/c669/98e8/95ab98d5b65890f4130278ba5e8e7593?Expires=1713744000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=aGDCHkvA3eTGNeEGPOu4wm8vALl41tLBGJGj9QPd4XM7PaTTncn2tNeOI6k6Hn6yqS4DfRVXekG5m-QByOQHC7HKG5vSlFTAVZ9aNJOfoswKdT0z4UJqgFGPrt68xcnotHtsC6xCN5Z14I-qGMBF-LL5biZ9PGl8ChJ-WyTLmzP2d6a5RQSiDZtRANmqOhgCRMm8Ky7nh3jFXYjZG5FMJ-O5dWBchf3Xj5eRJ~2jUKIDNgQ7l4b7ydWzAxOM~MzcfzAuv2r8cNK8e-MZUx4E~LS2XLrRlFw3bj~p6dweUSDdtysPWNqNMny2iwvbIqbc4BcH7cz6Ppzws1dpo9xf0g__"
+							backgroundImage="https://tinyurl.com/5j5dart7"
 							actionType="link"
 							description="Breezy Summer Style"
 							discountText="up to 50% off"
@@ -125,34 +128,16 @@ const Shop = () => {
 				<section>
 					<Heading text="New Arrivals" />
 					<div className="grid grid-cols-[repeat(auto-fit,_minmax(250px,_1fr))] gap-4">
-						<CategoryCard
-							imageUrl="https://s3-alpha-sig.figma.com/img/4dfc/8cb2/9eb86a3efe124ecd15816859f3ea4e88?Expires=1713744000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=naCmB2Ldnt~9qrIpcWglKvyZf2Ed7kgdkgsGKlv6oIu4zaNIWaeTS2ziyHvE6RfA0mWP~wUGFcNQp8RohQ1VethM6Wie3dkFdYB5FxcXLBaQ81r7JKxVYU8RCCUm25DQ8jjW7MkyxmrmSwrQwy6yB2hH~Kqzt2fQNeRGCoIVBtWBsmtiaIbH4MPtTFCnEnyktTyqkhnkN0~w3BM6x306u~MjFUsgaqToq~ayIJt9h27presSsmucZRdOm8LNt3LGuTsEd4DqlyKzCpgVckA9BE2P2g7DINVmifVXqiRGyu4fzTlRI7HoK2V5BfclmLNL6FzoGuLYMPU0AU2P2b2syA__"
-							title="Boxers"
-							actionText="Explore Now!"
-						/>
-						<CategoryCard
-							title="Coats and Parkers"
-							imageUrl="https://s3-alpha-sig.figma.com/img/3329/758c/e2776638d2390797575fe0652468591a?Expires=1713744000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=nHErEaUj4CxfpLQ9nnCQHwjxjIcEtSuaGC8KgGfp3ZZQ5rGjMVu9S5AB-xmdpvCftzBWaeAP-N12OGwEIWwZ4rPcPk2rDxDuy-VUNTa3Z1TOAd5VSK97PjKmisN1WG2MJ0L4hNv9utumDe7rrbUetSu5Y46UQOerlEw72nhdB8bkPPI8dgJ~s3uBuVniFsUqN-towlzZ7F~37L6dzyP3a1drOtRkLqV-Bpf16vVgxY33Q2W2iLqHqfBW8WU~qA~H~T3eC~XiAAWdFtTllWlGsDI5lhgckcJUzI~1em3wFum4UQLZuH1-5PuMKtFwyANtgO11VtgPQW~bIbtu1nVqXw__"
-						/>
-						<CategoryCard
-							title="Tees and Tshirts"
-							imageUrl="https://s3-alpha-sig.figma.com/img/1d49/8085/cd056686e79c2dee4de64329271d3aac?Expires=1713744000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=TLNhWWxV8bB~xVZDPS5OujeCJMbtwy3tbJi-c2Q-kv8v8HlKXNAUXbvNMlWdtAwBLQPsy1fWazXp1w~XyLUx-VLlSbFRNa1nYvoWph269I62Eq-XXkQR7kSY-bjaI~ycPwcNKpUquBfoDb0mcQs6ALT3uAhnuM14zekyqv8IFjG1~r-egaaDVo8bbS-lkgExW0LH7QTULVqTaIHTM0MLPDULQJnR0Q8GI-6xa1E5TrZX8~E9CXtiBGO~IInXKome32ibC1QIQWbYqMK6KlIDYBgOu0BVC25DdjnZV6kjWQw96Jg79ofiwt5FZxTaup-mqdNaCbp8vrHgT~F2d~FCHg__"
-						/>
-						<CategoryCard
-							imageUrl="https://s3-alpha-sig.figma.com/img/4dfc/8cb2/9eb86a3efe124ecd15816859f3ea4e88?Expires=1713744000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=naCmB2Ldnt~9qrIpcWglKvyZf2Ed7kgdkgsGKlv6oIu4zaNIWaeTS2ziyHvE6RfA0mWP~wUGFcNQp8RohQ1VethM6Wie3dkFdYB5FxcXLBaQ81r7JKxVYU8RCCUm25DQ8jjW7MkyxmrmSwrQwy6yB2hH~Kqzt2fQNeRGCoIVBtWBsmtiaIbH4MPtTFCnEnyktTyqkhnkN0~w3BM6x306u~MjFUsgaqToq~ayIJt9h27presSsmucZRdOm8LNt3LGuTsEd4DqlyKzCpgVckA9BE2P2g7DINVmifVXqiRGyu4fzTlRI7HoK2V5BfclmLNL6FzoGuLYMPU0AU2P2b2syA__"
-							title="Boxers"
-						/>
-
-						<CategoryCard
-							title="Huddies and sweetshirts"
-							imageUrl="https://s3-alpha-sig.figma.com/img/0a94/2bfb/32d058cabd76d21b35a037c539dd1710?Expires=1713744000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=lerEza2jCdP4d-pmMP-fcY6CtObFuAYlrcnIAXRhLTB7wlCb4dVmjtyWPbXRtByZctGIFUiCNB8R57mtbv6w2hpFosEWxfl25iN4Py9srlXxlrpJE0TPAz6X0OY4UemDdvc6BI6DspbwOrJxt3RfxzP2TUaEVoIWuCxBejKI9DnrzpzIU5t4-wS8GlFyR2Fj7nBnkkvvZSAKpa4Qzkp4ZVOjZk83Z1jrCwpeWVHOcUNTO3AQmWWygvxjE7A29strdy05aBmpPF2J7TzjRbd5k25w8CpMs41Oo0JrTn9PdP9gsrdCN~PMJh2yJ0OK~pAUCmJKe-k4Io9dX5OBTMlI5A__"
-							actionText="Explore Now!"
-						/>
-						<CategoryCard
-							title="Coats and Parkers"
-							imageUrl="https://s3-alpha-sig.figma.com/img/3329/758c/e2776638d2390797575fe0652468591a?Expires=1713744000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=nHErEaUj4CxfpLQ9nnCQHwjxjIcEtSuaGC8KgGfp3ZZQ5rGjMVu9S5AB-xmdpvCftzBWaeAP-N12OGwEIWwZ4rPcPk2rDxDuy-VUNTa3Z1TOAd5VSK97PjKmisN1WG2MJ0L4hNv9utumDe7rrbUetSu5Y46UQOerlEw72nhdB8bkPPI8dgJ~s3uBuVniFsUqN-towlzZ7F~37L6dzyP3a1drOtRkLqV-Bpf16vVgxY33Q2W2iLqHqfBW8WU~qA~H~T3eC~XiAAWdFtTllWlGsDI5lhgckcJUzI~1em3wFum4UQLZuH1-5PuMKtFwyANtgO11VtgPQW~bIbtu1nVqXw__"
-							actionText="Explore Now!"
-						/>
+						{data?.data?.slice(0, 6).map((cat, key) => {
+							return (
+								<CategoryCard
+									key={key}
+									title={cat.title}
+									imageUrl={cat.image}
+									actionText="Explore Now!"
+								/>
+							);
+						})}
 					</div>
 				</section>
 				<section className="flex flex-col gap-4">
@@ -160,7 +145,7 @@ const Shop = () => {
 					<div className="flex flex-col sm:flex-row items-center justify-end gap-4">
 						<CategoryCardWithContent
 							actionText="Shop Now"
-							backgroundImage="https://s3-alpha-sig.figma.com/img/cc0b/4fba/76b046b1f4fe7dfb452989b94ab6881a?Expires=1713744000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=IBuKeRuYvcSln6gZynJ58XhVFO5qhcMo-WnAnM9aHX-6wWOutnEoeSzfkYvj0QA3BaKmu8JsDcZevfH-R~RS3D8hA1wEwbT6TMbmcVV3K1-bc7uV9i5G1~mv9ZHvTVE7zgBmeE0THY98v~QFeICjGbhME6s05DlqFUkAT7jmw11etV9W4ng~FoVl3tvbTGbPPOB7I-WlbZYdqv2MC~dU0xj4jdFX1Le2WWmW0uyA8D-HyoR~7~hKzNrBRpyfDxaWR88yMNn-jByLEgTXlp2Fhz2oSZYC5Ak-crCzZrm~hf3dO-GycllyGOuHvGoCASXyCJiIfaXGhC~KHqJwwAmLoQ__"
+							backgroundImage="https://tinyurl.com/3ru3b8tv"
 							actionType="button"
 							description="High Coziness"
 							discountText="up to 50% off"
@@ -170,7 +155,7 @@ const Shop = () => {
 
 						<CategoryCardWithContent
 							actionText="Shop Now"
-							backgroundImage="https://s3-alpha-sig.figma.com/img/c669/98e8/95ab98d5b65890f4130278ba5e8e7593?Expires=1713744000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=aGDCHkvA3eTGNeEGPOu4wm8vALl41tLBGJGj9QPd4XM7PaTTncn2tNeOI6k6Hn6yqS4DfRVXekG5m-QByOQHC7HKG5vSlFTAVZ9aNJOfoswKdT0z4UJqgFGPrt68xcnotHtsC6xCN5Z14I-qGMBF-LL5biZ9PGl8ChJ-WyTLmzP2d6a5RQSiDZtRANmqOhgCRMm8Ky7nh3jFXYjZG5FMJ-O5dWBchf3Xj5eRJ~2jUKIDNgQ7l4b7ydWzAxOM~MzcfzAuv2r8cNK8e-MZUx4E~LS2XLrRlFw3bj~p6dweUSDdtysPWNqNMny2iwvbIqbc4BcH7cz6Ppzws1dpo9xf0g__"
+							backgroundImage="https://tinyurl.com/5j5dart7"
 							actionType="button"
 							description="High Coziness"
 							discountText="up to 50% off"
@@ -179,7 +164,7 @@ const Shop = () => {
 						/>
 						<CategoryCardWithContent
 							actionText="Shop Now"
-							backgroundImage="https://s3-alpha-sig.figma.com/img/35ba/f6bd/7d29bb88d169abf43d9a0c5a4a067a9b?Expires=1713744000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=KE4a7sW9yl7XWm14mFMH2T2kNns2CrBr3NBEVYxCMTMtv6dvzAr96YqIXFqxB39n1OEKZdq8Torq1r-VkY2Xv36Npm95-cquNwXndWtXYML0jvFbYghNC8VEhEJzZ4I1t9WZT96nVrPMsVii8NAg4Cr3LIKtC0sX96cTNd6H2KGuq6ikTv4UX30feVIl8yKAI7vT4iA5SgxSeXNdYWudkCzyJD3~hrFX2C8FxHdsQgtu2UTtEifDceICvwMrf1mDbd2y09uP19E0Vgz~mLtsVLZMU9p3qKNrKvokYwNbal1iLsoyJ-eKxoMPy~QSqJd638MEifuCe7FJShAlTn7qPw__"
+							backgroundImage="https://tinyurl.com/35d3fsux"
 							actionType="button"
 							description="High Coziness"
 							discountText="up to 50% off"
@@ -190,7 +175,7 @@ const Shop = () => {
 					<div className="flex flex-col sm:flex-row items-center justify-end gap-4">
 						<CategoryCardWithContent
 							actionText="Shop Now"
-							backgroundImage="https://s3-alpha-sig.figma.com/img/4cd3/e890/70d398f9eec93a9fd3b86cdb8d5cda03?Expires=1713744000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=LfRV3D4uVRALJhDVbNHFaSvUHLmjjFvutg8~bKVVrN0qwjQMUeJmXU~Tvl~UpyI91tOeVW0Tp~CnJRaCZxam6Li-SDryRFtfZYI0Vq9uawn8DcIUQOiNftpIYehnmLeAhP7vC1I80dit3R1QJ8I1iGwTnzt3ZqYy9Mf5UzVk-SEECuV2H0688Iqn0k~LMsR6~n1wr2b4vYPohTcFdNB~MCHnjEd4~pmxhN3ciiOrn8hdnxW-9fUozIudZ0OVRfQ3mHqd~dKfTawSazCDJWIvyt-CeOkhiParuMInXqrU8fxxFfX8F~gilr58KgXvHVqVfI1fhw5zeWpwY9oMuD6Ikg__"
+							backgroundImage="https://tinyurl.com/2774nzcs"
 							actionType="button"
 							description="High Coziness"
 							discountText="up to 50% off"
@@ -199,7 +184,7 @@ const Shop = () => {
 						/>
 						<CategoryCardWithContent
 							actionText="Shop Now"
-							backgroundImage="https://s3-alpha-sig.figma.com/img/0a94/2bfb/32d058cabd76d21b35a037c539dd1710?Expires=1713744000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=lerEza2jCdP4d-pmMP-fcY6CtObFuAYlrcnIAXRhLTB7wlCb4dVmjtyWPbXRtByZctGIFUiCNB8R57mtbv6w2hpFosEWxfl25iN4Py9srlXxlrpJE0TPAz6X0OY4UemDdvc6BI6DspbwOrJxt3RfxzP2TUaEVoIWuCxBejKI9DnrzpzIU5t4-wS8GlFyR2Fj7nBnkkvvZSAKpa4Qzkp4ZVOjZk83Z1jrCwpeWVHOcUNTO3AQmWWygvxjE7A29strdy05aBmpPF2J7TzjRbd5k25w8CpMs41Oo0JrTn9PdP9gsrdCN~PMJh2yJ0OK~pAUCmJKe-k4Io9dX5OBTMlI5A__"
+							backgroundImage="https://shorturl.at/dkzOT"
 							actionType="button"
 							description="High Coziness"
 							discountText="up to 50% off"
@@ -212,7 +197,7 @@ const Shop = () => {
 					<div className="flex flex-col sm:flex-row overflow-hidden rounded-xl">
 						<div className="relative bg-cover bg-center w-full aspect-square sm:w-1/2 sm:aspect-auto  min-h-full bg-black/50 text-white flex flex-col justify-center p-8 sm:p-10 md:p-16">
 							<img
-								src="https://s3-alpha-sig.figma.com/img/f927/963a/ccbf8d7814593bd6ca7041fc940b1951?Expires=1713744000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=b7qGO15t7XZrWhkoi36ahoIQC0G12OucRBg2KfX6KaoYM1QGxqwMzepOItoCJ7sB~-c0bzsBEzBd0waYRQopXLa6zTBaxs6Mb0vT2t4GuCZXLWuc9U8Yhn4Np402V3JSNnIS5yzMjmlxal3T6lMUZ42FML6QgwJfawh3HSxzBmPnPJPTe0YFgz1Ui3HDNCmscvojhPp3rnrD8l0SN~W5ScjwJ8dxi5bFt1bGw7a3lOnufyTptHpTpmAD3HKHzavnuz2AdR1k6DhYo~2TDInjgFFKntNi0FSRW6sOtjR7gkRr6rm8gP51KVFAUzIk1p-A6EtMVGxVl3EOpD0mpDOHLQ__"
+								src="https://tinyurl.com/297dfp8n"
 								alt=""
 								className="absolute top-0 w-full left-0 h-full [zoom:_60%] -z-10 object-cover object-center"
 							/>
@@ -234,7 +219,7 @@ const Shop = () => {
 						</div>
 
 						<img
-							src="https://s3-alpha-sig.figma.com/img/9f91/4df4/eea76dc5260efee6392481867d9947a2?Expires=1713744000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=eZRQ0jWIZsbAWooEizfzzaFqpkvyMhRH0-WBLUj24Q2ZiKYWlxSlPJ8f--oM0QKeIK5zro~Ff0~afmkpVSzledOn8FNGT5dY34NY5WIceCgC26qOBl4XSs5tAApwSVzFSEvYt5QZgQW2Qblg6TXE-dl1n-AnCc37sgHIYD63sKz3e84zWRWHi7zB3Fb9egZLHfIE~JlAzDNcslp96qvmMMpbMW6IyerluDhmCR6GpSo7TUVKPcjnJgEC7z06grz-CDNzdX2xwSW8MgH2ZlKaDt4oMH9UKsWZ3iU0X50AIjCcvHCNJvzxDHCZqICod8BvWNOXu2aFRlA46sWmriQowQ__"
+							src="https://tinyurl.com/58mh9drc"
 							alt=""
 							className="object-cover object-top w-full aspect-square sm:w-1/2 sm:h-auto"
 						/>
@@ -243,60 +228,31 @@ const Shop = () => {
 				<section>
 					<Heading text="Categories for Men" />
 					<div className="grid grid-cols-[repeat(auto-fit,_minmax(250px,_1fr))] gap-4">
-						<CategoryCard
-							title="Huddies and sweetshirts"
-							imageUrl="https://s3-alpha-sig.figma.com/img/0a94/2bfb/32d058cabd76d21b35a037c539dd1710?Expires=1713744000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=lerEza2jCdP4d-pmMP-fcY6CtObFuAYlrcnIAXRhLTB7wlCb4dVmjtyWPbXRtByZctGIFUiCNB8R57mtbv6w2hpFosEWxfl25iN4Py9srlXxlrpJE0TPAz6X0OY4UemDdvc6BI6DspbwOrJxt3RfxzP2TUaEVoIWuCxBejKI9DnrzpzIU5t4-wS8GlFyR2Fj7nBnkkvvZSAKpa4Qzkp4ZVOjZk83Z1jrCwpeWVHOcUNTO3AQmWWygvxjE7A29strdy05aBmpPF2J7TzjRbd5k25w8CpMs41Oo0JrTn9PdP9gsrdCN~PMJh2yJ0OK~pAUCmJKe-k4Io9dX5OBTMlI5A__"
-						/>
-						<CategoryCard
-							title="Coats and Parkers"
-							imageUrl="https://s3-alpha-sig.figma.com/img/3329/758c/e2776638d2390797575fe0652468591a?Expires=1713744000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=nHErEaUj4CxfpLQ9nnCQHwjxjIcEtSuaGC8KgGfp3ZZQ5rGjMVu9S5AB-xmdpvCftzBWaeAP-N12OGwEIWwZ4rPcPk2rDxDuy-VUNTa3Z1TOAd5VSK97PjKmisN1WG2MJ0L4hNv9utumDe7rrbUetSu5Y46UQOerlEw72nhdB8bkPPI8dgJ~s3uBuVniFsUqN-towlzZ7F~37L6dzyP3a1drOtRkLqV-Bpf16vVgxY33Q2W2iLqHqfBW8WU~qA~H~T3eC~XiAAWdFtTllWlGsDI5lhgckcJUzI~1em3wFum4UQLZuH1-5PuMKtFwyANtgO11VtgPQW~bIbtu1nVqXw__"
-						/>
-						<CategoryCard
-							title="Tees and Tshirts"
-							imageUrl="https://s3-alpha-sig.figma.com/img/1d49/8085/cd056686e79c2dee4de64329271d3aac?Expires=1713744000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=TLNhWWxV8bB~xVZDPS5OujeCJMbtwy3tbJi-c2Q-kv8v8HlKXNAUXbvNMlWdtAwBLQPsy1fWazXp1w~XyLUx-VLlSbFRNa1nYvoWph269I62Eq-XXkQR7kSY-bjaI~ycPwcNKpUquBfoDb0mcQs6ALT3uAhnuM14zekyqv8IFjG1~r-egaaDVo8bbS-lkgExW0LH7QTULVqTaIHTM0MLPDULQJnR0Q8GI-6xa1E5TrZX8~E9CXtiBGO~IInXKome32ibC1QIQWbYqMK6KlIDYBgOu0BVC25DdjnZV6kjWQw96Jg79ofiwt5FZxTaup-mqdNaCbp8vrHgT~F2d~FCHg__"
-						/>
-						<CategoryCard
-							imageUrl="https://s3-alpha-sig.figma.com/img/4dfc/8cb2/9eb86a3efe124ecd15816859f3ea4e88?Expires=1713744000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=naCmB2Ldnt~9qrIpcWglKvyZf2Ed7kgdkgsGKlv6oIu4zaNIWaeTS2ziyHvE6RfA0mWP~wUGFcNQp8RohQ1VethM6Wie3dkFdYB5FxcXLBaQ81r7JKxVYU8RCCUm25DQ8jjW7MkyxmrmSwrQwy6yB2hH~Kqzt2fQNeRGCoIVBtWBsmtiaIbH4MPtTFCnEnyktTyqkhnkN0~w3BM6x306u~MjFUsgaqToq~ayIJt9h27presSsmucZRdOm8LNt3LGuTsEd4DqlyKzCpgVckA9BE2P2g7DINVmifVXqiRGyu4fzTlRI7HoK2V5BfclmLNL6FzoGuLYMPU0AU2P2b2syA__"
-							title="Boxers"
-						/>
+						{data?.data
+							?.filter((cat) => cat.title.toLowerCase() === "men")
+							.map((cat, key) => (
+								<CategoryCard
+									imageUrl={cat.image}
+									title={cat.title}
+									key={key}
+								/>
+							))}
 					</div>
 				</section>
 				<section>
 					<Heading text="Categories for Women" />
 					<div className="grid grid-cols-[repeat(auto-fit,_minmax(250px,_1fr))] gap-4">
-						<CategoryCard
-							title="Huddies and sweetshirts"
-							imageUrl="https://s3-alpha-sig.figma.com/img/0a94/2bfb/32d058cabd76d21b35a037c539dd1710?Expires=1713744000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=lerEza2jCdP4d-pmMP-fcY6CtObFuAYlrcnIAXRhLTB7wlCb4dVmjtyWPbXRtByZctGIFUiCNB8R57mtbv6w2hpFosEWxfl25iN4Py9srlXxlrpJE0TPAz6X0OY4UemDdvc6BI6DspbwOrJxt3RfxzP2TUaEVoIWuCxBejKI9DnrzpzIU5t4-wS8GlFyR2Fj7nBnkkvvZSAKpa4Qzkp4ZVOjZk83Z1jrCwpeWVHOcUNTO3AQmWWygvxjE7A29strdy05aBmpPF2J7TzjRbd5k25w8CpMs41Oo0JrTn9PdP9gsrdCN~PMJh2yJ0OK~pAUCmJKe-k4Io9dX5OBTMlI5A__"
-						/>
-						<CategoryCard
-							title="Coats and Parkers"
-							imageUrl="https://s3-alpha-sig.figma.com/img/3329/758c/e2776638d2390797575fe0652468591a?Expires=1713744000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=nHErEaUj4CxfpLQ9nnCQHwjxjIcEtSuaGC8KgGfp3ZZQ5rGjMVu9S5AB-xmdpvCftzBWaeAP-N12OGwEIWwZ4rPcPk2rDxDuy-VUNTa3Z1TOAd5VSK97PjKmisN1WG2MJ0L4hNv9utumDe7rrbUetSu5Y46UQOerlEw72nhdB8bkPPI8dgJ~s3uBuVniFsUqN-towlzZ7F~37L6dzyP3a1drOtRkLqV-Bpf16vVgxY33Q2W2iLqHqfBW8WU~qA~H~T3eC~XiAAWdFtTllWlGsDI5lhgckcJUzI~1em3wFum4UQLZuH1-5PuMKtFwyANtgO11VtgPQW~bIbtu1nVqXw__"
-						/>
-						<CategoryCard
-							title="Tees and Tshirts"
-							imageUrl="https://s3-alpha-sig.figma.com/img/1d49/8085/cd056686e79c2dee4de64329271d3aac?Expires=1713744000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=TLNhWWxV8bB~xVZDPS5OujeCJMbtwy3tbJi-c2Q-kv8v8HlKXNAUXbvNMlWdtAwBLQPsy1fWazXp1w~XyLUx-VLlSbFRNa1nYvoWph269I62Eq-XXkQR7kSY-bjaI~ycPwcNKpUquBfoDb0mcQs6ALT3uAhnuM14zekyqv8IFjG1~r-egaaDVo8bbS-lkgExW0LH7QTULVqTaIHTM0MLPDULQJnR0Q8GI-6xa1E5TrZX8~E9CXtiBGO~IInXKome32ibC1QIQWbYqMK6KlIDYBgOu0BVC25DdjnZV6kjWQw96Jg79ofiwt5FZxTaup-mqdNaCbp8vrHgT~F2d~FCHg__"
-						/>
-						<CategoryCard
-							imageUrl="https://s3-alpha-sig.figma.com/img/4dfc/8cb2/9eb86a3efe124ecd15816859f3ea4e88?Expires=1713744000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=naCmB2Ldnt~9qrIpcWglKvyZf2Ed7kgdkgsGKlv6oIu4zaNIWaeTS2ziyHvE6RfA0mWP~wUGFcNQp8RohQ1VethM6Wie3dkFdYB5FxcXLBaQ81r7JKxVYU8RCCUm25DQ8jjW7MkyxmrmSwrQwy6yB2hH~Kqzt2fQNeRGCoIVBtWBsmtiaIbH4MPtTFCnEnyktTyqkhnkN0~w3BM6x306u~MjFUsgaqToq~ayIJt9h27presSsmucZRdOm8LNt3LGuTsEd4DqlyKzCpgVckA9BE2P2g7DINVmifVXqiRGyu4fzTlRI7HoK2V5BfclmLNL6FzoGuLYMPU0AU2P2b2syA__"
-							title="Boxers"
-						/>
-						<CategoryCard
-							title="Coats and Parkers"
-							imageUrl="https://s3-alpha-sig.figma.com/img/3329/758c/e2776638d2390797575fe0652468591a?Expires=1713744000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=nHErEaUj4CxfpLQ9nnCQHwjxjIcEtSuaGC8KgGfp3ZZQ5rGjMVu9S5AB-xmdpvCftzBWaeAP-N12OGwEIWwZ4rPcPk2rDxDuy-VUNTa3Z1TOAd5VSK97PjKmisN1WG2MJ0L4hNv9utumDe7rrbUetSu5Y46UQOerlEw72nhdB8bkPPI8dgJ~s3uBuVniFsUqN-towlzZ7F~37L6dzyP3a1drOtRkLqV-Bpf16vVgxY33Q2W2iLqHqfBW8WU~qA~H~T3eC~XiAAWdFtTllWlGsDI5lhgckcJUzI~1em3wFum4UQLZuH1-5PuMKtFwyANtgO11VtgPQW~bIbtu1nVqXw__"
-						/>
-						<CategoryCard
-							title="Tees and Tshirts"
-							imageUrl="https://s3-alpha-sig.figma.com/img/1d49/8085/cd056686e79c2dee4de64329271d3aac?Expires=1713744000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=TLNhWWxV8bB~xVZDPS5OujeCJMbtwy3tbJi-c2Q-kv8v8HlKXNAUXbvNMlWdtAwBLQPsy1fWazXp1w~XyLUx-VLlSbFRNa1nYvoWph269I62Eq-XXkQR7kSY-bjaI~ycPwcNKpUquBfoDb0mcQs6ALT3uAhnuM14zekyqv8IFjG1~r-egaaDVo8bbS-lkgExW0LH7QTULVqTaIHTM0MLPDULQJnR0Q8GI-6xa1E5TrZX8~E9CXtiBGO~IInXKome32ibC1QIQWbYqMK6KlIDYBgOu0BVC25DdjnZV6kjWQw96Jg79ofiwt5FZxTaup-mqdNaCbp8vrHgT~F2d~FCHg__"
-						/>
-						<CategoryCard
-							imageUrl="https://s3-alpha-sig.figma.com/img/4dfc/8cb2/9eb86a3efe124ecd15816859f3ea4e88?Expires=1713744000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=naCmB2Ldnt~9qrIpcWglKvyZf2Ed7kgdkgsGKlv6oIu4zaNIWaeTS2ziyHvE6RfA0mWP~wUGFcNQp8RohQ1VethM6Wie3dkFdYB5FxcXLBaQ81r7JKxVYU8RCCUm25DQ8jjW7MkyxmrmSwrQwy6yB2hH~Kqzt2fQNeRGCoIVBtWBsmtiaIbH4MPtTFCnEnyktTyqkhnkN0~w3BM6x306u~MjFUsgaqToq~ayIJt9h27presSsmucZRdOm8LNt3LGuTsEd4DqlyKzCpgVckA9BE2P2g7DINVmifVXqiRGyu4fzTlRI7HoK2V5BfclmLNL6FzoGuLYMPU0AU2P2b2syA__"
-							title="Boxers"
-						/>
-
-						<CategoryCard
-							title="Huddies and sweetshirts"
-							imageUrl="https://s3-alpha-sig.figma.com/img/0a94/2bfb/32d058cabd76d21b35a037c539dd1710?Expires=1713744000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=lerEza2jCdP4d-pmMP-fcY6CtObFuAYlrcnIAXRhLTB7wlCb4dVmjtyWPbXRtByZctGIFUiCNB8R57mtbv6w2hpFosEWxfl25iN4Py9srlXxlrpJE0TPAz6X0OY4UemDdvc6BI6DspbwOrJxt3RfxzP2TUaEVoIWuCxBejKI9DnrzpzIU5t4-wS8GlFyR2Fj7nBnkkvvZSAKpa4Qzkp4ZVOjZk83Z1jrCwpeWVHOcUNTO3AQmWWygvxjE7A29strdy05aBmpPF2J7TzjRbd5k25w8CpMs41Oo0JrTn9PdP9gsrdCN~PMJh2yJ0OK~pAUCmJKe-k4Io9dX5OBTMlI5A__"
-						/>
+						{data?.data
+							?.filter(
+								(cat) => cat.title.toLowerCase() === "women"
+							)
+							.map((cat, key) => (
+								<CategoryCard
+									imageUrl={cat.image}
+									title={cat.title}
+									key={key}
+								/>
+							))}
 					</div>
 				</section>
 
@@ -305,38 +261,19 @@ const Shop = () => {
 				<section>
 					<Heading text="In the Limelight" />
 					<div className="grid grid-cols-[repeat(auto-fit,_minmax(250px,_1fr))] gap-4">
-						<ProductCard
-							imageUrl="https://s3-alpha-sig.figma.com/img/0a94/2bfb/32d058cabd76d21b35a037c539dd1710?Expires=1713744000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=lerEza2jCdP4d-pmMP-fcY6CtObFuAYlrcnIAXRhLTB7wlCb4dVmjtyWPbXRtByZctGIFUiCNB8R57mtbv6w2hpFosEWxfl25iN4Py9srlXxlrpJE0TPAz6X0OY4UemDdvc6BI6DspbwOrJxt3RfxzP2TUaEVoIWuCxBejKI9DnrzpzIU5t4-wS8GlFyR2Fj7nBnkkvvZSAKpa4Qzkp4ZVOjZk83Z1jrCwpeWVHOcUNTO3AQmWWygvxjE7A29strdy05aBmpPF2J7TzjRbd5k25w8CpMs41Oo0JrTn9PdP9gsrdCN~PMJh2yJ0OK~pAUCmJKe-k4Io9dX5OBTMlI5A__"
-							title="Boxers"
-							price="$100"
-							brand="Nike"
-							onLiked={() => {}}
-							onDisliked={() => {}}
-						/>
-						<ProductCard
-							imageUrl="https://s3-alpha-sig.figma.com/img/0a94/2bfb/32d058cabd76d21b35a037c539dd1710?Expires=1713744000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=lerEza2jCdP4d-pmMP-fcY6CtObFuAYlrcnIAXRhLTB7wlCb4dVmjtyWPbXRtByZctGIFUiCNB8R57mtbv6w2hpFosEWxfl25iN4Py9srlXxlrpJE0TPAz6X0OY4UemDdvc6BI6DspbwOrJxt3RfxzP2TUaEVoIWuCxBejKI9DnrzpzIU5t4-wS8GlFyR2Fj7nBnkkvvZSAKpa4Qzkp4ZVOjZk83Z1jrCwpeWVHOcUNTO3AQmWWygvxjE7A29strdy05aBmpPF2J7TzjRbd5k25w8CpMs41Oo0JrTn9PdP9gsrdCN~PMJh2yJ0OK~pAUCmJKe-k4Io9dX5OBTMlI5A__"
-							title="Boxers"
-							price="$100"
-							brand="Nike"
-							onLiked={() => {}}
-							onDisliked={() => {}}
-						/>
-						<ProductCard
-							imageUrl="https://s3-alpha-sig.figma.com/img/0a94/2bfb/32d058cabd76d21b35a037c539dd1710?Expires=1713744000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=lerEza2jCdP4d-pmMP-fcY6CtObFuAYlrcnIAXRhLTB7wlCb4dVmjtyWPbXRtByZctGIFUiCNB8R57mtbv6w2hpFosEWxfl25iN4Py9srlXxlrpJE0TPAz6X0OY4UemDdvc6BI6DspbwOrJxt3RfxzP2TUaEVoIWuCxBejKI9DnrzpzIU5t4-wS8GlFyR2Fj7nBnkkvvZSAKpa4Qzkp4ZVOjZk83Z1jrCwpeWVHOcUNTO3AQmWWygvxjE7A29strdy05aBmpPF2J7TzjRbd5k25w8CpMs41Oo0JrTn9PdP9gsrdCN~PMJh2yJ0OK~pAUCmJKe-k4Io9dX5OBTMlI5A__"
-							title="Boxers"
-							price="$100"
-							brand="Nike"
-							onLiked={() => {}}
-							onDisliked={() => {}}
-						/>
-						<ProductCard
-							imageUrl="https://s3-alpha-sig.figma.com/img/0a94/2bfb/32d058cabd76d21b35a037c539dd1710?Expires=1713744000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=lerEza2jCdP4d-pmMP-fcY6CtObFuAYlrcnIAXRhLTB7wlCb4dVmjtyWPbXRtByZctGIFUiCNB8R57mtbv6w2hpFosEWxfl25iN4Py9srlXxlrpJE0TPAz6X0OY4UemDdvc6BI6DspbwOrJxt3RfxzP2TUaEVoIWuCxBejKI9DnrzpzIU5t4-wS8GlFyR2Fj7nBnkkvvZSAKpa4Qzkp4ZVOjZk83Z1jrCwpeWVHOcUNTO3AQmWWygvxjE7A29strdy05aBmpPF2J7TzjRbd5k25w8CpMs41Oo0JrTn9PdP9gsrdCN~PMJh2yJ0OK~pAUCmJKe-k4Io9dX5OBTMlI5A__"
-							title="Boxers"
-							price="$100"
-							brand="Nike"
-							onLiked={() => {}}
-							onDisliked={() => {}}
-						/>
+						{productsQueryObj.data?.data
+							.slice(0, 8)
+							.map((prd, key) => (
+								<ProductCard
+									key={key}
+									imageUrl={prd.images[0]}
+									title={prd.title}
+									price={prd.price}
+									brand={"Modern Dude"}
+									onLiked={() => {}}
+									onDisliked={() => {}}
+								/>
+							))}
 					</div>
 				</section>
 				<section>

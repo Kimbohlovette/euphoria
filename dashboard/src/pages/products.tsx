@@ -6,9 +6,12 @@ import { LuPlus, LuUserCheck, LuUsers2 } from 'react-icons/lu';
 import Dropdown from '../components/dropdown';
 import CreateProductModal from '../components/modals/create_product_modal';
 import SearchInput from '../components/search_input_control';
+import { useFetchProducts } from "../hooks/hooks";
+import { Category } from "../types";
 
 const Products = () => {
 	const [showCreateProductModal, setShowCreateProductModal] = useState(false);
+	const { data, isLoading } = useFetchProducts();
 	return (
 		<>
 			{showCreateProductModal && (
@@ -59,13 +62,13 @@ const Products = () => {
 								value=""
 								placeholder="Search"
 								onChange={() => {}}
-								containerStyle={{ backgroundColor: '#f9fafb' }}
+								containerStyle={{ backgroundColor: "#f9fafb" }}
 							/>
 							<Dropdown
 								data={[]}
 								onSelect={() => {}}
 								placeholder="Sort by:"
-								containerStyle={{ backgroundColor: '#f9fafb' }}
+								containerStyle={{ backgroundColor: "#f9fafb" }}
 							/>
 							<div>
 								<button
@@ -81,43 +84,49 @@ const Products = () => {
 						</div>
 					</header>
 					<div className="py-5">
-						<table className="w-full">
-							<thead>
-								<tr className="*:px-4 *:py-3 text-left text-sm text-gray-500 *:font-light">
-									<th>Product Name</th>
-									<th className="hidden md:table-cell">
-										Desription
-									</th>
-									<th>Category</th>
-									<th className="hidden sm:table-cell">
-										Image
-									</th>
-									<th>Country</th>
-									<th className="flex justify-end sm:justify-start">
-										Status
-									</th>
-								</tr>
-							</thead>
-							<tbody className="divide-y">
-								{Array(8)
-									.fill(3)
-									.map((row, key) => (
+						{isLoading ? (
+							<div className="flex items-center justify-center">
+								<IoArrowDownSharp size={100} />
+							</div>
+						) : (
+							<table className="w-full">
+								<thead>
+									<tr className="*:px-4 *:py-3 text-left text-sm text-gray-500 *:font-light">
+										<th>Product Name</th>
+										<th className="hidden md:table-cell">
+											Desription
+										</th>
+										<th>Category</th>
+										<th className="hidden sm:table-cell">
+											Image
+										</th>
+										<th>Country</th>
+										<th className="flex justify-end sm:justify-start">
+											Status
+										</th>
+									</tr>
+								</thead>
+								<tbody className="divide-y">
+									{data?.data.map((prd, key) => (
 										<CategoryRow
-											country="Cameroon"
-											category="Women"
-											description="Some fake description"
-											imageUrl="https://plus.unsplash.com/premium_photo-1661508557554-e3d96f2fdde5?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-											name="Aparel Zoe"
+											country={"Cameroon"}
+											category={
+												(prd.category as Category).title
+											}
+											description={prd.description}
+											imageUrl={prd.images[0]}
+											name={prd.title}
 											status={
 												Math.random() < 0.5
-													? 'inactive'
-													: 'active'
+													? "inactive"
+													: "active"
 											}
 											key={key}
 										/>
 									))}
-							</tbody>
-						</table>
+								</tbody>
+							</table>
+						)}
 					</div>
 					<footer>
 						<div className="flex flex-wrap-reverse gap-5 lg:justify-between">

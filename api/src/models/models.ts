@@ -5,9 +5,9 @@ dotenv.config();
 
 // Collect database credentials
 const DBUSER = process.env.DBUSER;
-const DBPASSWORD = process.env.DBPASSWORD ?? 'euphoria';
-const DBNAME = process.env.DBNAME ?? 'euphoria';
-const DBHOST = process.env.DBHOST ?? 'localhost';
+const DBPASSWORD = process.env.DBPASSWORD;
+const DBNAME = process.env.DBNAME;
+const DBHOST = process.env.DBHOST;
 
 // database connection path
 const DB_PATH = `postgres://${DBUSER}:${DBPASSWORD}@${DBHOST}/${DBNAME}`;
@@ -15,7 +15,7 @@ const sequelize = new Sequelize(DB_PATH);
 
 // Define database models
 export const User = sequelize.define<UserModelType>(
-	'User',
+	"User",
 	{
 		id: {
 			type: DataTypes.UUID,
@@ -31,17 +31,17 @@ export const User = sequelize.define<UserModelType>(
 		},
 		role: {
 			type: DataTypes.STRING,
-			defaultValue: 'user',
+			defaultValue: "user",
 		},
 	},
 	{
-		tableName: 'users',
+		tableName: "users",
 		timestamps: true,
 	}
 );
 
 export const Password = sequelize.define(
-	'Password',
+	"Password",
 	{
 		id: {
 			type: DataTypes.UUID,
@@ -54,13 +54,13 @@ export const Password = sequelize.define(
 		},
 	},
 	{
-		tableName: 'passwords',
+		tableName: "passwords",
 		timestamps: true,
 	}
 );
 
 export const Category = sequelize.define(
-	'Category',
+	"Category",
 	{
 		id: {
 			type: DataTypes.UUID,
@@ -79,12 +79,12 @@ export const Category = sequelize.define(
 		},
 	},
 	{
-		tableName: 'categories',
+		tableName: "categories",
 	}
 );
 
 export const Product = sequelize.define<ProductModelType>(
-	'Product',
+	"Product",
 	{
 		id: {
 			type: DataTypes.UUID,
@@ -112,7 +112,7 @@ export const Product = sequelize.define<ProductModelType>(
 		},
 	},
 	{
-		tableName: 'products',
+		tableName: "products",
 		timestamps: true,
 	}
 );

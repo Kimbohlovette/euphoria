@@ -1,15 +1,15 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import {
-	createCategory,
-	createProduct,
-	fetchCategories,
 	fetchProducts,
-} from "./fetch_api";
+	fetchCategories,
+	createProduct,
+	createCategory,
+} from "../services/fetch_api";
 
-export const useFetchProducts = () => {
+export const useFetchProducts = (queryKey?: string[]) => {
 	return useQuery({
 		queryKey: ["products"],
-		queryFn: fetchProducts,
+		queryFn: () => fetchProducts(queryKey),
 	});
 };
 

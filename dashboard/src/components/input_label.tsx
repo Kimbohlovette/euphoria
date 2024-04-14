@@ -11,7 +11,7 @@ const InputLabel = (props: Props) => {
 			<div className="text-gray-600 text-sm inline-block py-2">
 				{text}
 			</div>
-			{required && <span className="text-red-500">*</span>}
+			{required && <span className="text-gray-600">*</span>}
 		</>
 	);
 };
