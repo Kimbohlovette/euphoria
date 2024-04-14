@@ -1,0 +1,56 @@
+version: '3.8'
+
+services:
+    webapp:
+        build: ./webapp
+        ports:
+            - 8081:3000
+        environment:
+            REACT_APP_BASE_URL: http://0.0.0.0:${LISTENPORT}
+        depends_on:
+            - api
+    dashboard:
+        build: ./dashboard
+        ports:
+            - 8082:3000
+        environment:
+            REACT_APP_BASE_URL: http://0.0.0.0:${LISTENPORT}
+        depends_on:
+            - api
+
+
+    api:
+        build: ./api
+        ports:
+            - ${LISTENPORT}:${LISTENPORT}
+
+        environment:
+            DBUSER: ${DB_USER}
+            DBPASSWORD: ${DB_PASSWORD}
+            DBNAME: ${DB_NAME}
+            DBHOST: db
+            LISTENPORT: ${LISTENPORT}
+        depends_on:
+            db:
+                condition: service_healthy
+        
+        restart: unless-stopped
+    db:
+        image: postgres:alpine3.18
+        ports:
+            - 8084:5432
+        container_name: db
+        volumes:
+            - eu:/var/lib/postgresql/data
+        environment:
+            POSTGRES_USER: ${DB_USER:-eu-user}
+            POSTGRES_PASSWORD: ${DB_PASSWORD:-secret}
+            POSTGRES_DB: ${DB_NAME:-eu-db}
+            PGDATA: /data/postgres
+        healthcheck :
+            test: [ "CMD", "pg_isready", "-q", "-d", "${DB_NAME}", "-U", "${DB_USER}" ]
+            interval : 5s
+            timeout : 5s
+            retries : 5
+volumes:
+    eu:
