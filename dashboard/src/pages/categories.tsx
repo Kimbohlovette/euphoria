@@ -4,15 +4,21 @@ import { LuPlus, LuUserCheck, LuUsers2 } from "react-icons/lu";
 import Dropdown from '../components/dropdown';
 import SearchInput from '../components/search_input_control';
 import { GoChevronLeft, GoChevronRight } from 'react-icons/go';
-import { useState } from 'react';
-import CreateCategoryModal from '../components/modals/create_category_modal';
+import { useEffect, useState } from "react";
+import CreateCategoryModal from "../components/modals/create_category_modal";
 import { useFetchCategories } from "../hooks/hooks";
+import Pagination from "../components/pagination";
 
 const Categories = () => {
 	const [showCreateCategoryModal, setShowCreateCategoryModal] =
 		useState(false);
-
-	const { data, isLoading, isError, error } = useFetchCategories();
+	const PAGE_SIZE = 5;
+	const [page, setPage] = useState(1);
+	const { data } = useFetchCategories({ page, size: PAGE_SIZE });
+	const catData = data?.data;
+	useEffect(() => {
+		console.log("changed: ", page);
+	}, [page]);
 
 	return (
 		<>
@@ -28,7 +34,7 @@ const Categories = () => {
 					<div>
 						<SummaryCard
 							title="Categories"
-							count={23}
+							count={catData?.total ?? 0}
 							percentageIncrease={16}
 							icon={<LuUsers2 size={30} />}
 						/>
@@ -68,13 +74,17 @@ const Categories = () => {
 								value=""
 								placeholder="Search"
 								onChange={() => {}}
-								containerStyle={{ backgroundColor: "#f9fafb" }}
+								containerStyle={{
+									backgroundColor: "#f9fafb",
+								}}
 							/>
 							<Dropdown
 								data={[]}
 								onSelect={() => {}}
 								placeholder="Sort by:"
-								containerStyle={{ backgroundColor: "#f9fafb" }}
+								containerStyle={{
+									backgroundColor: "#f9fafb",
+								}}
 							/>
 							<div>
 								<button
@@ -104,7 +114,7 @@ const Categories = () => {
 								</tr>
 							</thead>
 							<tbody className="divide-y">
-								{data?.data.map((cat, key) => (
+								{catData?.categories.map((cat, key) => (
 									<CategoryRow
 										key={key}
 										description={cat.description}
@@ -116,30 +126,18 @@ const Categories = () => {
 							</tbody>
 						</table>
 					</div>
-					<footer>
-						<div className="flex flex-wrap-reverse gap-5 lg:justify-between">
-							<p className="text-sm text-gray-500">
-								Showing data {1} to {8} of {256}k entries
-							</p>
-							<div className="flex items-center gap-2 [&_button]:px-3 [&_button]:py-1.5 [&_button]:bg-gray-100 [&_button]:rounded-md text-xs">
-								<button>
-									<GoChevronLeft />
-								</button>
-								<div className="hidden sm:flex gap-1">
-									<button>1</button>
-									<button>2</button>
-									<button>3</button>
-									<button>4</button>
-
-									<div className="self-end px-4">...</div>
-									<button>40</button>
-								</div>
-								<button>
-									<GoChevronRight />
-								</button>
-							</div>
-						</div>
-					</footer>
+					{/* Pagination section */}
+					{catData?.total && (
+						<Pagination
+							currentNumberOfItems={
+								catData?.categories.length ?? 0
+							}
+							currentPage={page}
+							onPageChange={(page) => setPage(page)}
+							pageSize={PAGE_SIZE}
+							total={catData.total}
+						/>
+					)}
 				</section>
 			</div>
 		</>

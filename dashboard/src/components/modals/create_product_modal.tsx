@@ -89,7 +89,9 @@ const CreateProductModal = ({ onClose }: Props) => {
 								<div>
 									<InputLabel required text="Price" />
 									<TextInputControl
-										onChange={value  => setPrice(Number(value))}
+										onChange={(value) =>
+											setPrice(Number(value))
+										}
 										placeholder="35000"
 										required
 									/>
@@ -109,7 +111,7 @@ const CreateProductModal = ({ onClose }: Props) => {
 										containerStyle={{
 											backgroundColor: "#f9fafb",
 										}}
-										data={data?.data ?? []}
+										data={data?.data.categories ?? []}
 										onSelect={(value) =>
 											setCategoryId(value.id)
 										}

@@ -5,17 +5,19 @@ import {
 	createProduct,
 	createCategory,
 } from "../services/fetch_api";
-export const useFetchProducts = () => {
+import { QueryObject } from "../types";
+
+export const useFetchProducts = (queryObj?: QueryObject) => {
 	return useQuery({
-		queryKey: ["products"],
-		queryFn: fetchProducts,
+		queryKey: ["products", queryObj],
+		queryFn: () => fetchProducts(queryObj),
 	});
 };
 
-export const useFetchCategories = () => {
+export const useFetchCategories = (queryObj?: QueryObject) => {
 	return useQuery({
-		queryKey: ["categories"],
-		queryFn: fetchCategories,
+		queryKey: ["categories", queryObj],
+		queryFn: () => fetchCategories(queryObj),
 	});
 };
 
